@@ -5,23 +5,25 @@ using UnityEngine;
 public class DestroyEnemy : MonoBehaviour
 {
     [SerializeField] float minImpulseForExplosion = 1.0f;
-    [SerializeField] GameObject Player;
-
-    private Rigidbody2D rb;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        rb = Player.GetComponent<Rigidbody2D>();
-    }
+    [SerializeField] string Tag;
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        float impulse = collision.relativeVelocity.magnitude * rb.mass;
-        if (impulse > minImpulseForExplosion)
-        {
-            Destroy(this.gameObject);
-        }
-    }
+        	if(Tag == collision.collider.tag)
+			{
+        		float impulse = collision.relativeVelocity.y * 1;
+        		if ((-1)*impulse > minImpulseForExplosion)
+        		{
+					Destroy(this.gameObject);
+        		}
+				else
+				{
+					collision.collider.GetComponent<DestroyPlayer>().CollliderWithImpulse = true;
+					//collision.collider.GetComponent<DestroyPlayer>();
+				}
+			}
 
+	}
+   
 }
+
