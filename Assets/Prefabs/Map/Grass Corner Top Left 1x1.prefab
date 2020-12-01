@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6095338573385506879}
   m_Layer: 0
   m_Name: Grass Corner Top Left 1x1
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
