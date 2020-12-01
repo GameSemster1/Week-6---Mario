@@ -7,6 +7,9 @@ TagManager:
   - Ground
   - Enemy
   - Enemy_d
+  - Shoes
+  - Wind
+  - Slide
   layers:
   - Default
   - TransparentFX

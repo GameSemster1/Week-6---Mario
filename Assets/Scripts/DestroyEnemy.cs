@@ -4,26 +4,22 @@ using UnityEngine;
 
 public class DestroyEnemy : MonoBehaviour
 {
-    [SerializeField] float minImpulseForExplosion = 1.0f;
-    [SerializeField] string Tag;
+	[SerializeField] float minImpulseForExplosion = 1.0f;
+	[SerializeField] string Tag;
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        	if(Tag == collision.collider.tag)
+	private void OnCollisionEnter2D(Collision2D collision)
+	{
+		if (collision.collider.CompareTag(Tag))
+		{
+			float impulse = Mathf.Abs(collision.relativeVelocity.y);
+			if (impulse > minImpulseForExplosion)
 			{
-        		float impulse = collision.relativeVelocity.y * 1;
-        		if ((-1)*impulse > minImpulseForExplosion)
-        		{
-					Destroy(this.gameObject);
-        		}
-				else
-				{
-					collision.collider.GetComponent<DestroyPlayer>().CollliderWithImpulse = true;
-					//collision.collider.GetComponent<DestroyPlayer>();
-				}
+				Destroy(this.gameObject);
 			}
-
+			else
+			{
+				collision.collider.GetComponent<MovementPlayer>().ReSpawn();
+			}
+		}
 	}
-   
 }
-
